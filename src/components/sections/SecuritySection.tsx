@@ -12,7 +12,7 @@ const SecuritySection = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
             <span className="text-body font-medium text-green-700">
-              Certificada e regulamentada
+              Segurança comprovada
             </span>
           </div>
           
@@ -220,47 +220,7 @@ const SecuritySection = () => {
               </div>
             </div>
 
-            {/* Certifications */}
-            <div className="bg-white/90 backdrop-blur-sm border border-gray-200/50 rounded-2xl p-6 mt-8 hover:shadow-xl transition-all duration-300">
-              <h5 className="text-xl font-bold mb-6 text-gray-900">Certificações</h5>
-              <div className="space-y-4">
-                <div className="flex items-center gap-4 p-3 rounded-xl hover:bg-green-50 transition-colors duration-200 group">
-                  <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">ISO 27001</div>
-                    <div className="text-sm text-gray-600">Segurança da informação</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-4 p-3 rounded-xl hover:bg-green-50 transition-colors duration-200 group">
-                  <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">LGPD Compliance</div>
-                    <div className="text-sm text-gray-600">Proteção de dados</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center gap-4 p-3 rounded-xl hover:bg-green-50 transition-colors duration-200 group">
-                  <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">Regulamentação ANTT</div>
-                    <div className="text-sm text-gray-600">Transporte regulamentado</div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
 

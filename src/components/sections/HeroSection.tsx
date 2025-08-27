@@ -192,8 +192,8 @@ const HeroSection = () => {
                     
                     <div className="flex justify-between items-center">
                       <div>
-                        <div className="text-2xl font-bold text-green-400">R$ 12,50</div>
-                        <div className="text-gray-400 text-xs">3 min • 1.2 km</div>
+                        <div className="text-2xl font-bold text-green-400">R$ 24,85</div>
+                        <div className="text-gray-400 text-xs">16 min • 10.6 km</div>
                       </div>
                       <button className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg font-semibold hover:scale-105 transition-all duration-200">
                         Chamar

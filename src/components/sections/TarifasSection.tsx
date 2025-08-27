@@ -3,36 +3,69 @@
 import React, { useState } from 'react';
 
 const TarifasSection = () => {
-  const [selectedDistance, setSelectedDistance] = useState('5km');
+  const [selectedDistance, setSelectedDistance] = useState('2km');
 
-  // Taxas reais das plataformas
+  // Tarifas da Way
+  const wayTariffs = {
+    kmRate: 1.90,      // R$ 1,90 por km
+    timeRate: 0.17,    // R$ 0,17 por minuto
+    flagDown: 4.00,    // R$ 4,00 até 2km (bandeirada)
+    minFare: 0.00      // Tarifa mínima R$ 0,00
+  };
+
+  // Taxas das plataformas concorrentes
   const platformRates = {
-    way: 0.0799,     // 7.99%
-    uber: 0.25,      // 25%
-    nn: 0.1999,      // 19.99%
-    inDrive: 0.095   // 9.5%
+    way: 0.0799,       // 7.99%
+    uber: 0.25,        // 25%
+    nn: 0.1999,        // 19.99%
+    inDrive: 0.095     // 9.5%
   };
 
-  // Custo base da viagem (incluindo combustível, tempo do motorista, etc)
-  const baseCosts = {
-    '5km': 5.50,
-    '10km': 11.00,
-    '15km': 16.50,
-    '20km': 22.00
+  // Função para calcular preço da Way baseado nas tarifas reais
+  const calculateWayPrice = (distance: number, estimatedTime: number = 0) => {
+    let baseCost = 0;
+    
+    if (distance <= 2) {
+      // Até 2km: Bandeirada + km + tempo
+      baseCost = wayTariffs.flagDown + (distance * wayTariffs.kmRate) + (estimatedTime * wayTariffs.timeRate);
+    } else {
+      // Acima de 2km: Sem bandeirada, só km + tempo
+      baseCost = (distance * wayTariffs.kmRate) + (estimatedTime * wayTariffs.timeRate);
+    }
+    
+    // Aplicar taxa da plataforma
+    const finalPrice = baseCost / (1 - platformRates.way);
+    return Math.max(finalPrice, wayTariffs.minFare);
   };
 
-  const calculateFinalPrice = (baseCost: number, platformRate: number) => {
-    // Preço final = custo base / (1 - taxa da plataforma)
+  // Função para estimar preços dos concorrentes (usando estimativa baseada em mercado)
+  const calculateCompetitorPrice = (distance: number, estimatedTime: number, platformRate: number) => {
+    // Base estimada similar ao mercado (tarifa base + km + tempo)
+    const baseKmRate = 2.20; // Ligeiramente maior que Way
+    const baseTimeRate = 0.20; // Ligeiramente maior que Way
+    const baseFlagDown = distance <= 2 ? 5.00 : 0; // Bandeirada maior
+    
+    const baseCost = baseFlagDown + (distance * baseKmRate) + (estimatedTime * baseTimeRate);
     return baseCost / (1 - platformRate);
   };
 
-  const tarifaComparison = Object.keys(baseCosts).reduce((acc, distance) => {
-    const baseCost = baseCosts[distance as keyof typeof baseCosts];
-    acc[distance] = {
-      way: calculateFinalPrice(baseCost, platformRates.way),
-      uber: calculateFinalPrice(baseCost, platformRates.uber),
-      nn: calculateFinalPrice(baseCost, platformRates.nn),
-      inDrive: calculateFinalPrice(baseCost, platformRates.inDrive)
+  // Dados das viagens com distância e tempo estimado
+  const tripData = {
+    '2km': { distance: 2, time: 8 },
+    '5km': { distance: 5, time: 15 },
+    '10km': { distance: 10, time: 25 },
+    '15km': { distance: 15, time: 35 },
+    '20km': { distance: 20, time: 45 }
+  };
+
+  const tarifaComparison = Object.keys(tripData).reduce((acc, distanceKey) => {
+    const { distance, time } = tripData[distanceKey as keyof typeof tripData];
+    
+    acc[distanceKey] = {
+      way: calculateWayPrice(distance, time),
+      uber: calculateCompetitorPrice(distance, time, platformRates.uber),
+      nn: calculateCompetitorPrice(distance, time, platformRates.nn),
+      inDrive: calculateCompetitorPrice(distance, time, platformRates.inDrive)
     };
     return acc;
   }, {} as Record<string, Record<string, number>>);

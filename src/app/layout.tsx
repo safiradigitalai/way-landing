@@ -20,14 +20,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://wayapp.com.br"),
+  metadataBase: new URL("https://waydrivebr.com.br"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: "Way - Mobilidade Inteligente para Todos",
     description: "Tarifas até 15% menores, motoristas ganham mais e você chega onde precisa com segurança total. Baixe o app Way agora!",
-    url: "https://wayapp.com.br",
+    url: "https://waydrivebr.com.br",
     siteName: "Way App",
     images: [
       {
