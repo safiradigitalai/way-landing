@@ -89,7 +89,7 @@ const DownloadSection = () => {
         </svg>
       ),
       title: 'Ganhe mais',
-      description: '92% do valor da corrida fica com você',
+      description: '90% do valor da corrida fica com você',
       highlight: 'Até R$ 1.200 a mais por mês'
     },
     {

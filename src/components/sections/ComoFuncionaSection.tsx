@@ -82,9 +82,9 @@ const ComoFuncionaSection = () => {
     {
       number: '04',
       title: 'Receba seus ganhos rapidamente',
-      description: 'Ganhe até 92% do valor da corrida. Repasses automáticos e transparência total nos cálculos.',
+      description: 'Ganhe até 90% do valor da corrida. Repasses automáticos e transparência total nos cálculos.',
       details: [
-        'Repasse de até 92% do valor',
+        'Repasse de até 90% do valor',
         'Transferência automática',
         'Relatórios detalhados de ganhos'
       ]

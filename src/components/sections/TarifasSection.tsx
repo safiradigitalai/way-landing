@@ -15,7 +15,7 @@ const TarifasSection = () => {
 
   // Taxas das plataformas concorrentes
   const platformRates = {
-    way: 0.0799,       // 7.99%
+    way: 0.0999,       // 9.99%
     uber: 0.25,        // 25%
     nn: 0.1999,        // 19.99%
     inDrive: 0.095     // 9.5%
@@ -86,8 +86,8 @@ const TarifasSection = () => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
         </svg>
       ),
-      title: 'Repasse de 92%',
-      description: 'Enquanto outros cobram 9,5-25%, nossa taxa é de apenas 7,99%. Você fica com mais.',
+      title: 'Repasse de 90%',
+      description: 'Enquanto outros cobram 9,5-25%, nossa taxa é de apenas 9,99%. Você fica com mais.',
       highlight: 'Ganhe até R$ 1.200 a mais por mês'
     },
     {

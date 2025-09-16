@@ -44,8 +44,8 @@ const VantagesSection = () => {
         </svg>
       ),
       title: 'Motoristas valorizados',
-      description: 'Repasses justos de até 92% da corrida. Sem taxas ocultas, processos transparentes e suporte dedicado para parceiros.',
-      benefit: '92% de repasse',
+      description: 'Repasses justos de até 90% da corrida. Sem taxas ocultas, processos transparentes e suporte dedicado para parceiros.',
+      benefit: '90% de repasse',
       color: 'orange'
     },
     {
@@ -75,7 +75,7 @@ const VantagesSection = () => {
   const comparacao = [
     { 
       item: 'Taxa da plataforma', 
-      way: '7,99%', 
+      way: '9,99%', 
       others: '9,5-25%',
       description: 'A menor taxa do mercado para beneficiar motoristas e passageiros'
     },
