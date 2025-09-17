@@ -2,6 +2,8 @@
 
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import ConfettiEffect from '@/components/ui/ConfettiEffect';
+import { supabase, type DuplicateCheckResponse, type SubmitResponse } from '@/lib/supabase';
+import { getUserIP, getAllUTMParams } from '@/utils/helpers';
 
 // Interface para prêmios
 interface Premio {
@@ -163,7 +165,38 @@ const RoletaPremiadaSection = () => {
 
     if (!validarFormulario()) return;
 
-    setEtapaAtual('roleta');
+    try {
+      // Verificar duplicatas no banco de dados
+      const { data: duplicateCheck, error } = await supabase
+        .rpc('check_lead_duplicate', {
+          p_email: dadosForm.email,
+          p_whatsapp: dadosForm.whatsapp
+        });
+
+      if (error) {
+        console.error('Erro ao verificar duplicatas:', error);
+        setErrosForm({
+          email: 'Erro no servidor. Tente novamente em alguns instantes.'
+        });
+        return;
+      }
+
+      if (duplicateCheck?.duplicate) {
+        setErrosForm({
+          [duplicateCheck.type]: duplicateCheck.message
+        });
+        return;
+      }
+
+      // Se passou por todas as validações, prosseguir para roleta
+      setEtapaAtual('roleta');
+
+    } catch (error) {
+      console.error('Erro ao verificar duplicatas:', error);
+      setErrosForm({
+        email: 'Erro de conexão. Verifique sua internet e tente novamente.'
+      });
+    }
   };
 
   // Girar roleta
@@ -175,6 +208,9 @@ const RoletaPremiadaSection = () => {
     // Sortear prêmio
     const premio = sortearPremio(dadosForm.email);
     setPremioGanho(premio);
+
+    // Salvar lead no banco de dados (em paralelo com a animação)
+    const salvarLeadPromise = salvarLeadNoBanco(premio);
 
     // Calcular ângulo baseado no prêmio
     const anguloDosPremios = 360 / premios.length;
@@ -189,8 +225,11 @@ const RoletaPremiadaSection = () => {
       roletaRef.current.style.transform = `rotate(${anguloFinal}deg)`;
     }
 
-    // Aguardar animação e mostrar resultado
-    setTimeout(() => {
+    // Aguardar animação e resultado do banco
+    setTimeout(async () => {
+      // Aguardar que o lead seja salvo no banco
+      await salvarLeadPromise;
+
       setRoletaGirando(false);
       setEtapaAtual('resultado');
 
@@ -199,6 +238,45 @@ const RoletaPremiadaSection = () => {
         setMostrarConfetti(true);
       }
     }, 4000);
+  };
+
+  // Função para salvar lead no banco
+  const salvarLeadNoBanco = async (premio: Premio) => {
+    try {
+      // Coletar dados do usuário e sistema
+      const userIP = await getUserIP();
+      const utmParams = getAllUTMParams();
+
+      const { data: result, error } = await supabase
+        .rpc('insert_roleta_lead', {
+          p_email: dadosForm.email,
+          p_whatsapp: dadosForm.whatsapp,
+          p_premio_id: premio.id,
+          p_premio_nome: premio.nome,
+          p_premio_cupom: premio.cupom,
+          p_ip_address: userIP,
+          p_user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : null,
+          p_utm_source: utmParams.utm_source,
+          p_utm_medium: utmParams.utm_medium,
+          p_utm_campaign: utmParams.utm_campaign,
+          p_referrer: typeof document !== 'undefined' ? document.referrer : null
+        });
+
+      if (error) {
+        console.error('Erro ao salvar lead:', error);
+        return;
+      }
+
+      if (!result?.success) {
+        console.error('Erro ao salvar lead:', result?.error || 'Erro desconhecido');
+        return;
+      }
+
+      console.log('Lead salvo com sucesso:', result.lead_id);
+
+    } catch (error) {
+      console.error('Erro ao salvar lead:', error);
+    }
   };
 
   // Resetar jogo
