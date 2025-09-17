@@ -12,12 +12,6 @@ const HeroSection = () => {
     }
   };
 
-  const scrollToMotoristas = () => {
-    const element = document.getElementById('motoristas');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {

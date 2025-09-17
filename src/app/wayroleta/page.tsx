@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
 import RoletaPremiadaSection from '@/components/sections/RoletaPremiadaSection';
 
 export const metadata: Metadata = {
@@ -35,13 +37,15 @@ export default function WayRoletaPage() {
       {/* Header Simplificado para Landing */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-white/10">
         <div className="container mx-auto px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center">
-            <img
+          <Link href="/" className="flex items-center">
+            <Image
               src="/logo-branco.png"
               alt="Way"
-              className="h-8"
+              width={100}
+              height={32}
+              className="h-8 w-auto"
             />
-          </a>
+          </Link>
 
           {/* Badge promocional */}
           <div className="hidden sm:flex items-center gap-2 px-3 py-1 bg-yellow-400/20 border border-yellow-400/30 rounded-full">
@@ -50,12 +54,12 @@ export default function WayRoletaPage() {
           </div>
 
           {/* Link para página principal */}
-          <a
+          <Link
             href="/"
             className="text-white/80 hover:text-white transition-colors duration-300 text-sm"
           >
             ← Voltar ao site
-          </a>
+          </Link>
         </div>
       </header>
 
@@ -68,10 +72,12 @@ export default function WayRoletaPage() {
       <footer className="bg-black py-12">
         <div className="container mx-auto px-6 text-center">
           <div className="mb-8">
-            <img
+            <Image
               src="/logo-branco.png"
               alt="Way"
-              className="h-12 mx-auto mb-4"
+              width={150}
+              height={48}
+              className="h-12 w-auto mx-auto mb-4"
             />
             <p className="text-white/80 text-lg">
               O futuro do transporte urbano
@@ -80,12 +86,12 @@ export default function WayRoletaPage() {
 
           {/* Links Rápidos */}
           <div className="flex flex-col sm:flex-row justify-center items-center gap-6 mb-8">
-            <a
+            <Link
               href="/"
               className="text-white/80 hover:text-white transition-colors duration-300"
             >
               Página Inicial
-            </a>
+            </Link>
             <a
               href="https://play.google.com/store/apps/details?id=com.mobapps.client.waydriver&hl=pt_BR"
               target="_blank"

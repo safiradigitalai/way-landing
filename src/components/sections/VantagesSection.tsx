@@ -105,14 +105,6 @@ const VantagesSection = () => {
     }
   ];
 
-  const colorClasses = {
-    purple: 'bg-purple-100 text-way-purple',
-    blue: 'bg-blue-100 text-blue-600',
-    green: 'bg-green-100 text-green-600',
-    orange: 'bg-orange-100 text-orange-600',
-    indigo: 'bg-indigo-100 text-indigo-600',
-    emerald: 'bg-emerald-100 text-emerald-600'
-  };
 
   return (
     <section id="vantagens" className="relative section bg-gradient-to-br from-purple-600 to-purple-800 overflow-hidden">

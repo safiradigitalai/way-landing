@@ -94,7 +94,7 @@ const ConfettiEffect: React.FC<ConfettiEffectProps> = ({
     }
 
     particulasRef.current = novasParticulas;
-  }, [cores]);
+  }, [cores, gerarParticula]);
 
   const desenharParticula = (ctx: CanvasRenderingContext2D, particula: Particula) => {
     ctx.save();
@@ -195,7 +195,7 @@ const ConfettiEffect: React.FC<ConfettiEffectProps> = ({
         onComplete();
       }
     }
-  }, [duracao, onComplete]);
+  }, [duracao, onComplete, atualizarParticulas]);
 
   const redimensionarCanvas = () => {
     const canvas = canvasRef.current;
