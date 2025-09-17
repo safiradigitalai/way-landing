@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useCallback, useMemo } from 'react';
+import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import ConfettiEffect from '@/components/ui/ConfettiEffect';
 
 // Interface para prêmios
@@ -22,9 +22,28 @@ const RoletaPremiadaSection = () => {
   const [roletaGirando, setRoletaGirando] = useState(false);
   const [mostrarConfetti, setMostrarConfetti] = useState(false);
   const [errosForm, setErrosForm] = useState<{ [key: string]: string }>({});
+  const [paddingTop, setPaddingTop] = useState('80px');
+  const [paddingBottom, setPaddingBottom] = useState('80px');
 
   // Refs para animações
   const roletaRef = useRef<HTMLDivElement>(null);
+
+  // Hook para responsividade do padding
+  useEffect(() => {
+    const updatePadding = () => {
+      if (window.innerWidth >= 1024) {
+        setPaddingTop('0px');
+        setPaddingBottom('80px');
+      } else {
+        setPaddingTop('80px');
+        setPaddingBottom('80px');
+      }
+    };
+
+    updatePadding();
+    window.addEventListener('resize', updatePadding);
+    return () => window.removeEventListener('resize', updatePadding);
+  }, []);
 
   // Definição dos prêmios
   const premios: Premio[] = useMemo(() => [
@@ -198,6 +217,22 @@ const RoletaPremiadaSection = () => {
   };
 
   return (
+    <>
+      <style jsx>{`
+        .premio-texto {
+          transform: translateY(-120px);
+        }
+        @media (min-width: 640px) {
+          .premio-texto {
+            transform: translateY(-140px);
+          }
+        }
+        @media (min-width: 768px) {
+          .premio-texto {
+            transform: translateY(-150px);
+          }
+        }
+      `}</style>
     <section className="relative min-h-screen bg-gradient-to-br from-purple-900 via-purple-800 to-purple-600 overflow-hidden">
 
       {/* Background Effects */}
@@ -214,41 +249,50 @@ const RoletaPremiadaSection = () => {
         onComplete={() => setMostrarConfetti(false)}
       />
 
-      <div className="container relative z-10 min-h-screen flex items-center justify-center py-20">
+      <div
+        className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 min-h-screen lg:flex lg:items-center lg:justify-center lg:py-20"
+        style={{
+          paddingTop,
+          paddingBottom
+        }}
+      >
 
-        {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-yellow-400/20 rounded-full border border-yellow-400/30 mb-8">
-            <div className="w-3 h-3 bg-yellow-400 rounded-full animate-ping" />
-            <svg className="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-            </svg>
-            <span className="text-white font-bold text-lg">Roleta Premiada Way</span>
+        {/* Layout Desktop: Split Screen */}
+        <div className="lg:grid lg:grid-cols-2 lg:gap-12 lg:items-center w-full">
+
+          {/* Coluna Esquerda - Header e Descrição (Desktop) / Header Mobile */}
+          <div className="text-center lg:text-left mb-8 sm:mb-12 lg:mb-0">
+            <div className="inline-flex items-center gap-3 px-6 py-3 bg-yellow-400/20 rounded-full border border-yellow-400/30 mb-6 lg:mb-8">
+              <div className="w-3 h-3 bg-yellow-400 rounded-full animate-ping" />
+              <svg className="w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+              </svg>
+              <span className="text-white font-bold text-lg">Roleta Premiada Way</span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black leading-tight text-white mb-4 lg:mb-6">
+              Ganhe até <span className="text-yellow-400">50% OFF</span>
+            </h1>
+            <p className="text-base sm:text-lg lg:text-xl text-white/80 leading-relaxed lg:max-w-none max-w-3xl mx-auto lg:mx-0">
+              Deixe seus dados e rode nossa roleta para ganhar cupons de desconto exclusivos!
+            </p>
           </div>
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-black leading-tight text-white mb-6">
-            Ganhe até <span className="text-yellow-400">50% OFF</span>
-          </h1>
-          <p className="text-xl text-white/80 leading-relaxed max-w-3xl mx-auto">
-            Deixe seus dados e rode nossa roleta para ganhar cupons de desconto exclusivos!
-          </p>
-        </div>
 
-        {/* Conteúdo Principal */}
-        <div className="w-full max-w-4xl mx-auto">
+          {/* Coluna Direita - Conteúdo Principal */}
+          <div className="w-full">
 
           {/* Etapa 1: Formulário */}
           {etapaAtual === 'formulario' && (
-            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12">
-              <div className="text-center mb-8">
-                <div className="w-16 h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12">
+              <div className="text-center mb-6 sm:mb-8">
+                <div className="w-12 h-12 sm:w-16 sm:h-16 bg-purple-600/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
-                <h2 className="text-3xl font-bold text-white mb-4">
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white mb-3 sm:mb-4">
                   Preencha seus dados para participar
                 </h2>
-                <p className="text-white/80">
+                <p className="text-sm sm:text-base text-white/80">
                   Seus dados ficam seguros conosco e você ganha o direito de rodar nossa roleta!
                 </p>
               </div>
@@ -347,25 +391,25 @@ const RoletaPremiadaSection = () => {
             </div>
           )}
 
-          {/* Etapa 2: Roleta */}
-          {etapaAtual === 'roleta' && (
-            <div className="text-center">
-              <div className="mb-8">
-                <div className="w-20 h-20 bg-yellow-400/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-10 h-10 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {/* Etapa 2: Roleta */}
+            {etapaAtual === 'roleta' && (
+              <div className="text-center">
+              <div className="mb-6 sm:mb-8">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 bg-yellow-400/20 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                   </svg>
                 </div>
-                <h2 className="text-4xl font-bold text-white mb-4">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4">
                   Sua vez de ganhar!
                 </h2>
-                <p className="text-white/80 text-lg">
+                <p className="text-white/80 text-sm sm:text-base lg:text-lg">
                   Clique no botão para girar a roleta e descobrir seu prêmio
                 </p>
               </div>
 
               {/* Roleta */}
-              <div className="relative mx-auto mb-8" style={{ width: '400px', height: '400px' }}>
+              <div className="relative mx-auto mb-8 w-80 h-80 sm:w-96 sm:h-96 md:w-[400px] md:h-[400px]">
 
                 {/* Ponteiro */}
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2 z-20">
@@ -399,14 +443,13 @@ const RoletaPremiadaSection = () => {
                         }}
                       >
                         <div
-                          className="text-white font-bold text-sm text-center"
+                          className="text-white font-bold text-xs sm:text-sm md:text-base text-center premio-texto"
                           style={{
-                            transform: 'translateY(-150px)',
                             textShadow: '1px 1px 2px rgba(0,0,0,0.7)'
                           }}
                         >
-                          <div className="mb-1">{premio.icone}</div>
-                          <div className="whitespace-nowrap">{premio.nome}</div>
+                          <div className="mb-1 scale-75 sm:scale-90 md:scale-100">{premio.icone}</div>
+                          <div className="whitespace-nowrap text-[10px] sm:text-xs md:text-sm">{premio.nome}</div>
                         </div>
                       </div>
                     );
@@ -414,8 +457,8 @@ const RoletaPremiadaSection = () => {
 
                   {/* Centro da roleta */}
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-16 h-16 bg-white rounded-full shadow-lg flex items-center justify-center">
-                      <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-white rounded-full shadow-lg flex items-center justify-center">
+                      <svg className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                       </svg>
                     </div>
@@ -427,10 +470,10 @@ const RoletaPremiadaSection = () => {
               <button
                 onClick={girarRoleta}
                 disabled={roletaGirando}
-                className={`px-12 py-4 rounded-2xl text-xl font-black transition-all duration-300 ${
+                className={`px-8 sm:px-12 py-3 sm:py-4 rounded-2xl text-lg sm:text-xl font-black transition-all duration-300 touch-manipulation ${
                   roletaGirando
                     ? 'bg-gray-500 text-gray-300 cursor-not-allowed'
-                    : 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:scale-105 hover:shadow-xl hover:shadow-yellow-500/25'
+                    : 'bg-gradient-to-r from-yellow-400 to-orange-500 text-black hover:scale-105 hover:shadow-xl hover:shadow-yellow-500/25 active:scale-95'
                 }`}
               >
                 {roletaGirando ? (
@@ -450,50 +493,50 @@ const RoletaPremiadaSection = () => {
             </div>
           )}
 
-          {/* Etapa 3: Resultado */}
-          {etapaAtual === 'resultado' && premioGanho && (
-            <div className="text-center">
-              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 md:p-12">
+            {/* Etapa 3: Resultado */}
+            {etapaAtual === 'resultado' && premioGanho && (
+              <div className="text-center">
+              <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-12">
 
                 {premioGanho.cupom ? (
                   <>
                     {/* Resultado Positivo */}
-                    <div className="mb-8">
-                      <div className="w-24 h-24 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-12 h-12 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="mb-6 sm:mb-8">
+                      <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-10 h-10 sm:w-12 sm:h-12 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <h2 className="text-4xl font-black text-white mb-4">
+                      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-3 sm:mb-4">
                         PARABÉNS!
                       </h2>
-                      <p className="text-2xl text-yellow-400 font-bold mb-6">
+                      <p className="text-lg sm:text-xl lg:text-2xl text-yellow-400 font-bold mb-4 sm:mb-6">
                         Você ganhou {premioGanho.nome}
                       </p>
                     </div>
 
                     {/* Cupom */}
-                    <div className="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl p-6 mb-8">
+                    <div className="bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8">
                       <div className="text-black">
-                        <h3 className="text-xl font-bold mb-2">SEU CUPOM DE DESCONTO</h3>
-                        <div className="text-3xl font-black tracking-wider border-2 border-dashed border-black rounded-lg py-4 px-6 bg-white/20">
+                        <h3 className="text-lg sm:text-xl font-bold mb-2">SEU CUPOM DE DESCONTO</h3>
+                        <div className="text-xl sm:text-2xl lg:text-3xl font-black tracking-wider border-2 border-dashed border-black rounded-lg py-3 sm:py-4 px-4 sm:px-6 bg-white/20 break-all">
                           {premioGanho.cupom}-{Math.random().toString(36).substr(2, 4).toUpperCase()}
                         </div>
-                        <p className="text-sm mt-3 opacity-80">
+                        <p className="text-xs sm:text-sm mt-3 opacity-80">
                           Use este cupom no seu primeiro pedido
                         </p>
                       </div>
                     </div>
 
                     {/* Instruções */}
-                    <div className="bg-white/10 rounded-2xl p-6 mb-8 text-left">
-                      <h4 className="text-white font-bold mb-3 flex items-center gap-2">
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="bg-white/10 rounded-2xl p-4 sm:p-6 mb-6 sm:mb-8 text-left">
+                      <h4 className="text-white font-bold mb-3 flex items-center gap-2 text-sm sm:text-base">
+                        <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         Como usar seu cupom:
                       </h4>
-                      <ol className="text-white/80 space-y-2">
+                      <ol className="text-white/80 space-y-2 text-sm sm:text-base">
                         <li>1. Baixe o app Way na Play Store</li>
                         <li>2. Faça seu cadastro</li>
                         <li>3. Vá em &quot;Cupons&quot; e digite o código acima</li>
@@ -527,10 +570,10 @@ const RoletaPremiadaSection = () => {
                 )}
 
                 {/* Botões de Ação */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                   <button
                     onClick={resetarJogo}
-                    className="px-8 py-3 bg-white/20 text-white rounded-xl font-semibold hover:bg-white/30 transition-colors duration-300"
+                    className="px-6 sm:px-8 py-3 bg-white/20 text-white rounded-xl font-semibold hover:bg-white/30 transition-colors duration-300 text-sm sm:text-base"
                   >
                     Tentar Novamente
                   </button>
@@ -538,17 +581,19 @@ const RoletaPremiadaSection = () => {
                     href="https://play.google.com/store/apps/details?id=com.mobapps.client.waydriver&hl=pt_BR"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-8 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black rounded-xl font-bold hover:scale-105 transition-transform duration-300"
+                    className="px-6 sm:px-8 py-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black rounded-xl font-bold hover:scale-105 transition-transform duration-300 text-sm sm:text-base"
                   >
                     Baixar App Way
                   </a>
                 </div>
               </div>
             </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </section>
+    </>
   );
 };
 
