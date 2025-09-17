@@ -16,10 +16,17 @@ const Header = () => {
   }, []);
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
+    // Verifica se estamos na página inicial
+    if (window.location.pathname === '/') {
+      // Se estamos na home, faz scroll normal
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsMobileMenuOpen(false);
+      }
+    } else {
+      // Se estamos em outra página, redireciona para home com âncora
+      window.location.href = `/#${sectionId}`;
     }
   };
 
@@ -64,20 +71,34 @@ const Header = () => {
               {/* Center Navigation */}
               <nav className="hidden lg:flex items-center space-x-8">
                 {[
+                  { label: 'Home', id: '/', isLink: true },
                   { label: 'O App', id: 'como-funciona' },
                   { label: 'Diferenciais', id: 'vantagens' },
                   { label: 'Segurança', id: 'seguranca' },
-                  { label: 'Preços', id: 'tarifas' }
+                  { label: 'Preços', id: 'tarifas' },
+                  { label: 'Termos', id: 'termos-de-uso', isLink: true }
                 ].map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="group relative px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-all duration-300"
-                  >
-                    <span className="relative z-10">{item.label}</span>
-                    <div className="absolute inset-0 bg-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 scale-95 group-hover:scale-100" />
-                    <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300" />
-                  </button>
+                  item.isLink ? (
+                    <a
+                      key={item.id}
+                      href={item.id === '/' ? '/' : `/${item.id}`}
+                      className="group relative px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-all duration-300"
+                    >
+                      <span className="relative z-10">{item.label}</span>
+                      <div className="absolute inset-0 bg-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 scale-95 group-hover:scale-100" />
+                      <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300" />
+                    </a>
+                  ) : (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className="group relative px-4 py-2 text-sm font-medium text-gray-300 hover:text-white transition-all duration-300"
+                    >
+                      <span className="relative z-10">{item.label}</span>
+                      <div className="absolute inset-0 bg-purple-600/20 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 scale-95 group-hover:scale-100" />
+                      <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300" />
+                    </button>
+                  )
                 ))}
               </nav>
 
@@ -164,23 +185,40 @@ const Header = () => {
             <div className="px-6 py-6">
               <div className="space-y-2 mb-8">
                 {[
+                  { label: 'Home', id: '/', isLink: true },
                   { label: 'O App', id: 'como-funciona' },
                   { label: 'Diferenciais', id: 'vantagens' },
                   { label: 'Segurança', id: 'seguranca' },
-                  { label: 'Preços', id: 'tarifas' }
+                  { label: 'Preços', id: 'tarifas' },
+                  { label: 'Termos', id: 'termos-de-uso', isLink: true }
                 ].map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className="w-full text-left px-4 py-3 text-base font-medium text-gray-300 hover:text-white hover:bg-purple-800/30 rounded-xl transition-all duration-200 group"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span>{item.label}</span>
-                      <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-1 group-hover:translate-x-0 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </button>
+                  item.isLink ? (
+                    <a
+                      key={item.id}
+                      href={item.id === '/' ? '/' : `/${item.id}`}
+                      className="w-full block text-left px-4 py-3 text-base font-medium text-gray-300 hover:text-white hover:bg-purple-800/30 rounded-xl transition-all duration-200 group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span>{item.label}</span>
+                        <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-1 group-hover:translate-x-0 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </a>
+                  ) : (
+                    <button
+                      key={item.id}
+                      onClick={() => scrollToSection(item.id)}
+                      className="w-full text-left px-4 py-3 text-base font-medium text-gray-300 hover:text-white hover:bg-purple-800/30 rounded-xl transition-all duration-200 group"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span>{item.label}</span>
+                        <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 transform translate-x-1 group-hover:translate-x-0 transition-all duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </button>
+                  )
                 ))}
               </div>
 
