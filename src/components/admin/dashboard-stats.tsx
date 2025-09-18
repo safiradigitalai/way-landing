@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import {
   Users,
   Mail,
@@ -40,6 +40,15 @@ export function DashboardStats() {
       if (showRefresh) setIsRefreshing(true);
       else setIsLoading(true);
 
+      // Debug log
+      console.log('Supabase URL:', process.env.NEXT_PUBLIC_SUPABASE_URL);
+      console.log('Supabase configured:', isSupabaseConfigured());
+
+      // Check if Supabase is properly configured
+      if (!isSupabaseConfigured()) {
+        throw new Error('Supabase não está configurado corretamente. Verifique as variáveis de ambiente no painel da plataforma de deploy.');
+      }
+
       const { data, error } = await supabase
         .from('way_roleta_stats')
         .select('*')
@@ -53,7 +62,7 @@ export function DashboardStats() {
       setError(null);
     } catch (err) {
       console.error('Erro ao buscar estatísticas:', err);
-      setError('Erro ao carregar estatísticas');
+      setError(err instanceof Error ? err.message : 'Erro ao carregar estatísticas');
     } finally {
       setIsLoading(false);
       setIsRefreshing(false);
