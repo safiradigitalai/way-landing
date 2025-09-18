@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-
 // Force dynamic rendering to prevent build errors with Supabase
 export const dynamic = 'force-dynamic';
+
+import { useState } from 'react';
 import { DashboardNav } from '@/components/admin/dashboard-nav';
 import { DashboardStats } from '@/components/admin/dashboard-stats';
 import { LeadsTable } from '@/components/admin/leads-table';

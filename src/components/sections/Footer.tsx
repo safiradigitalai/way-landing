@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 
 const Footer = () => {
   const scrollToSection = (sectionId: string) => {
@@ -67,9 +68,11 @@ const Footer = () => {
         
         {/* Hero Section do Footer */}
         <div className="text-center mb-16">
-          <img 
-            src="/logo-roxo.png" 
-            alt="Way" 
+          <Image
+            src="/logo-roxo.png"
+            alt="Way"
+            width={80}
+            height={80}
             className="h-20 mx-auto mb-8"
           />
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-black mb-6 leading-tight">

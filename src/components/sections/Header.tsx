@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -56,9 +57,11 @@ const Header = () => {
                   className="group relative flex items-center space-x-3"
                 >
                   <div className="relative">
-                    <img 
-                      src="/logo-branco.png" 
-                      alt="Way" 
+                    <Image
+                      src="/logo-branco.png"
+                      alt="Way"
+                      width={isScrolled ? 48 : 64}
+                      height={isScrolled ? 48 : 64}
                       className={`transition-all duration-300 group-hover:scale-110 filter brightness-0 invert ${
                         isScrolled ? 'h-12' : 'h-16'
                       }`}

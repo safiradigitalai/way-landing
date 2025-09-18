@@ -1,9 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-
 // Force dynamic rendering to prevent build errors with authentication
 export const dynamic = 'force-dynamic';
+
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/use-auth';
 import Image from 'next/image';
