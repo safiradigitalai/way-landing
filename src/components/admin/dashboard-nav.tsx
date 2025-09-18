@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useAuth } from '@/hooks/use-auth';
 import Image from 'next/image';
 import {
@@ -8,7 +8,6 @@ import {
   Users,
   Download,
   LogOut,
-  Shield,
   Zap,
   User,
   Clock,

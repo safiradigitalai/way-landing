@@ -25,7 +25,7 @@ export interface DuplicateCheckResponse {
   duplicate: boolean
   type?: 'email' | 'whatsapp'
   message: string
-  existing_lead?: any
+  existing_lead?: RoletaLead
 }
 
 export interface SubmitResponse {

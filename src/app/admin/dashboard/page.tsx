@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { DashboardNav } from '@/components/admin/dashboard-nav';
 import { DashboardStats } from '@/components/admin/dashboard-stats';
 import { LeadsTable } from '@/components/admin/leads-table';

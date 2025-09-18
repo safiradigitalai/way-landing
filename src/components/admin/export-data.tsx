@@ -12,13 +12,12 @@ import {
   CheckCircle,
   AlertTriangle,
   Clock,
-  Zap,
-  Gift
+  Zap
 } from 'lucide-react';
 import * as XLSX from 'xlsx';
 
 // Dynamic import for PDF functionality
-let jsPDFModule: any = null;
+let jsPDFModule: typeof import('jspdf').default | null = null;
 
 interface Lead {
   id: string;
@@ -160,7 +159,7 @@ export function ExportData() {
       XLSX.utils.book_append_sheet(wb, ws, 'Leads Roleta Way');
 
       // Add summary sheet
-      const premiosDistribuidos = leads.reduce((acc: any, lead) => {
+      const premiosDistribuidos = leads.reduce((acc: Record<string, number>, lead) => {
         acc[lead.premio_nome] = (acc[lead.premio_nome] || 0) + 1;
         return acc;
       }, {});

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useCallback } from 'react';
+import React, { useEffect, useRef, useCallback, useMemo } from 'react';
 
 interface ConfettiEffectProps {
   ativo: boolean;
@@ -31,7 +31,7 @@ const ConfettiEffect: React.FC<ConfettiEffectProps> = ({
   const particulasRef = useRef<Particula[]>([]);
   const tempoInicioRef = useRef<number | undefined>(undefined);
 
-  const cores = [
+  const cores = useMemo(() => [
     '#FFD700', // Dourado
     '#FF6B6B', // Vermelho
     '#4ECDC4', // Turquesa
@@ -40,9 +40,9 @@ const ConfettiEffect: React.FC<ConfettiEffectProps> = ({
     '#FFEAA7', // Amarelo claro
     '#DDA0DD', // Roxo claro
     '#98D8C8'  // Verde água
-  ];
+  ], []);
 
-  const gerarParticula = (x?: number, y?: number): Particula => {
+  const gerarParticula = useCallback((x?: number, y?: number): Particula => {
     const larguraCanvas = window.innerWidth;
 
     return {
@@ -57,7 +57,7 @@ const ConfettiEffect: React.FC<ConfettiEffectProps> = ({
       forma: ['quadrado', 'circulo', 'triangulo'][Math.floor(Math.random() * 3)] as 'quadrado' | 'circulo' | 'triangulo',
       opacidade: 1
     };
-  };
+  }, [cores]);
 
   const criarExplosaoConfetti = useCallback(() => {
     const novasParticulas: Particula[] = [];
@@ -132,7 +132,7 @@ const ConfettiEffect: React.FC<ConfettiEffectProps> = ({
     ctx.restore();
   };
 
-  const atualizarParticulas = (deltaTime: number) => {
+  const atualizarParticulas = useCallback((deltaTime: number) => {
     const gravidade = 0.8;
     const resistenciaAr = 0.99;
     const fadeDuration = 1000; // 1 segundo para desaparecer
@@ -163,7 +163,7 @@ const ConfettiEffect: React.FC<ConfettiEffectProps> = ({
                particula.x < window.innerWidth + 50 &&
                particula.opacidade > 0;
       });
-  };
+  }, [duracao]);
 
   const animar = useCallback((timestamp: number) => {
     if (!tempoInicioRef.current) {

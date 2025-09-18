@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useCallback, useMemo, useEffect } from 'react';
 import ConfettiEffect from '@/components/ui/ConfettiEffect';
-import { supabase, type DuplicateCheckResponse, type SubmitResponse } from '@/lib/supabase';
+import { supabase } from '@/lib/supabase';
 import { getUserIP, getAllUTMParams } from '@/utils/helpers';
 
 // Interface para prêmios

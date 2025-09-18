@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
 interface User {
@@ -14,11 +14,7 @@ export function useAuth() {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  const checkAuth = () => {
+  const checkAuth = useCallback(() => {
     try {
       const isLoggedIn = localStorage.getItem('way_admin_auth') === 'true';
       const userData = localStorage.getItem('way_admin_user');
@@ -38,7 +34,11 @@ export function useAuth() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   const login = async (email: string, password: string): Promise<boolean> => {
     // Credenciais fixas conforme solicitado

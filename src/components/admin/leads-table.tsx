@@ -5,7 +5,6 @@ import { supabase } from '@/lib/supabase';
 import {
   Users,
   Search,
-  Filter,
   Download,
   Eye,
   Edit,
@@ -43,12 +42,7 @@ interface Lead {
   attempt_count: number;
 }
 
-interface LeadsTableProps {
-  onEdit?: (lead: Lead) => void;
-  onDelete?: (lead: Lead) => void;
-}
-
-export function LeadsTable({ onEdit, onDelete }: LeadsTableProps) {
+export function LeadsTable() {
   const [leads, setLeads] = useState<Lead[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
