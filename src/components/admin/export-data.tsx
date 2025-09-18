@@ -359,47 +359,47 @@ export function ExportData() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
-        <div className="w-12 h-12 bg-yellow-400/20 rounded-xl flex items-center justify-center border border-yellow-400/30">
-          <Download className="w-6 h-6 text-yellow-400" />
+      <div className="flex items-center gap-3 xs:gap-4 mb-6 xs:mb-8">
+        <div className="w-10 h-10 xs:w-12 xs:h-12 bg-yellow-400/20 rounded-lg xs:rounded-xl flex items-center justify-center border border-yellow-400/30">
+          <Download className="w-5 h-5 xs:w-6 xs:h-6 text-yellow-400" />
         </div>
         <div>
-          <h1 className="text-3xl font-black text-white">
+          <h1 className="text-xl xs:text-2xl sm:text-3xl font-black text-white">
             Exportar Dados da Roleta
           </h1>
-          <p className="text-white/70">Baixe os dados dos leads em diferentes formatos</p>
+          <p className="text-white/70 text-sm xs:text-base">Baixe os dados dos leads em diferentes formatos</p>
         </div>
       </div>
 
       {/* Stats Summary */}
-      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 mb-8">
-        <div className="flex items-center gap-3 mb-6">
-          <Users className="w-6 h-6 text-yellow-400" />
-          <h2 className="text-xl font-bold text-white">Dados Disponíveis</h2>
+      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl xs:rounded-2xl p-4 xs:p-6 mb-6 xs:mb-8">
+        <div className="flex items-center gap-2 xs:gap-3 mb-4 xs:mb-6">
+          <Users className="w-5 h-5 xs:w-6 xs:h-6 text-yellow-400" />
+          <h2 className="text-lg xs:text-xl font-bold text-white">Dados Disponíveis</h2>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-white/10 rounded-lg p-4 border border-white/20 text-center">
-            <div className="text-2xl font-black text-yellow-400">{totalLeads}</div>
-            <div className="text-sm text-white/70">Total Leads</div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 xs:gap-4">
+          <div className="bg-white/10 rounded-lg p-3 xs:p-4 border border-white/20 text-center">
+            <div className="text-lg xs:text-xl sm:text-2xl font-black text-yellow-400">{totalLeads}</div>
+            <div className="text-xs xs:text-sm text-white/70">Total Leads</div>
           </div>
-          <div className="bg-white/10 rounded-lg p-4 border border-white/20 text-center">
-            <div className="text-2xl font-black text-green-400">{leads.filter(l => l.premio_cupom).length}</div>
-            <div className="text-sm text-white/70">Com Cupom</div>
+          <div className="bg-white/10 rounded-lg p-3 xs:p-4 border border-white/20 text-center">
+            <div className="text-lg xs:text-xl sm:text-2xl font-black text-green-400">{leads.filter(l => l.premio_cupom).length}</div>
+            <div className="text-xs xs:text-sm text-white/70">Com Cupom</div>
           </div>
-          <div className="bg-white/10 rounded-lg p-4 border border-white/20 text-center">
-            <div className="text-2xl font-black text-blue-400">{leads.filter(l => l.utm_source).length}</div>
-            <div className="text-sm text-white/70">Com UTM</div>
+          <div className="bg-white/10 rounded-lg p-3 xs:p-4 border border-white/20 text-center">
+            <div className="text-lg xs:text-xl sm:text-2xl font-black text-blue-400">{leads.filter(l => l.utm_source).length}</div>
+            <div className="text-xs xs:text-sm text-white/70">Com UTM</div>
           </div>
-          <div className="bg-white/10 rounded-lg p-4 border border-white/20 text-center">
-            <div className="text-2xl font-black text-purple-400">{[...new Set(leads.map(l => l.premio_nome))].length}</div>
-            <div className="text-sm text-white/70">Tipos de Prêmios</div>
+          <div className="bg-white/10 rounded-lg p-3 xs:p-4 border border-white/20 text-center">
+            <div className="text-lg xs:text-xl sm:text-2xl font-black text-purple-400">{[...new Set(leads.map(l => l.premio_nome))].length}</div>
+            <div className="text-xs xs:text-sm text-white/70">Tipos de Prêmios</div>
           </div>
         </div>
       </div>
 
       {/* Export Options */}
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid xs:grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 xs:gap-6">
         {exportOptions.map((option) => {
           const Icon = option.icon;
           const isLoading = exportStatus.status === 'loading' && exportStatus.type === option.title.split(' ')[1];
@@ -407,24 +407,24 @@ export function ExportData() {
           const isError = exportStatus.status === 'error' && exportStatus.type === option.title.split(' ')[1];
 
           return (
-            <div key={option.id} className="group bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 hover:bg-white/15 transition-all duration-300 overflow-hidden relative">
+            <div key={option.id} className="group bg-white/10 backdrop-blur-xl border border-white/20 rounded-xl xs:rounded-2xl p-4 xs:p-6 hover:bg-white/15 transition-all duration-300 overflow-hidden relative">
 
               {/* Energy Corner */}
-              <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full shadow-lg animate-pulse opacity-0 group-hover:opacity-100 transition-opacity" />
+              <div className="absolute -top-1 -right-1 w-2 h-2 xs:w-3 xs:h-3 bg-gradient-to-br from-yellow-400 to-orange-400 rounded-full shadow-lg animate-pulse opacity-0 group-hover:opacity-100 transition-opacity" />
 
-              <div className="space-y-4">
+              <div className="space-y-3 xs:space-y-4">
 
                 {/* Icon & Title */}
-                <div className="space-y-3">
-                  <div className={`w-14 h-14 rounded-xl flex items-center justify-center bg-gradient-to-br ${option.color} shadow-lg`}>
-                    <Icon className="w-7 h-7 text-white drop-shadow-sm" />
+                <div className="space-y-2 xs:space-y-3">
+                  <div className={`w-12 h-12 xs:w-14 xs:h-14 rounded-lg xs:rounded-xl flex items-center justify-center bg-gradient-to-br ${option.color} shadow-lg`}>
+                    <Icon className="w-6 h-6 xs:w-7 xs:h-7 text-white drop-shadow-sm" />
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold text-white group-hover:text-yellow-400 transition-colors">
+                    <h3 className="text-lg xs:text-xl font-bold text-white group-hover:text-yellow-400 transition-colors">
                       {option.title}
                     </h3>
-                    <p className="text-sm text-white/70">
+                    <p className="text-xs xs:text-sm text-white/70">
                       {option.description}
                     </p>
                   </div>
@@ -432,16 +432,16 @@ export function ExportData() {
 
                 {/* Status Message */}
                 {(isLoading || isSuccess || isError) && (
-                  <div className={`p-3 rounded-lg border ${
+                  <div className={`p-2 xs:p-3 rounded-lg border ${
                     isLoading ? 'bg-white/10 border-yellow-400/30' :
                     isSuccess ? 'bg-green-500/20 border-green-400/50' :
                     'bg-red-500/20 border-red-400/50'
                   }`}>
                     <div className="flex items-center gap-2">
-                      {isLoading && <Loader2 className="w-4 h-4 text-yellow-400 animate-spin" />}
-                      {isSuccess && <CheckCircle className="w-4 h-4 text-green-400" />}
-                      {isError && <AlertTriangle className="w-4 h-4 text-red-400" />}
-                      <span className={`text-sm font-medium ${
+                      {isLoading && <Loader2 className="w-3 h-3 xs:w-4 xs:h-4 text-yellow-400 animate-spin" />}
+                      {isSuccess && <CheckCircle className="w-3 h-3 xs:w-4 xs:h-4 text-green-400" />}
+                      {isError && <AlertTriangle className="w-3 h-3 xs:w-4 xs:h-4 text-red-400" />}
+                      <span className={`text-xs xs:text-sm font-medium ${
                         isLoading ? 'text-yellow-400' :
                         isSuccess ? 'text-green-400' :
                         'text-red-400'
@@ -456,17 +456,19 @@ export function ExportData() {
                 <button
                   onClick={option.action}
                   disabled={isLoading}
-                  className={`w-full h-12 bg-gradient-to-r ${option.color} text-white font-bold rounded-xl hover:scale-105 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50`}
+                  className={`w-full h-10 xs:h-12 bg-gradient-to-r ${option.color} text-white font-bold rounded-lg xs:rounded-xl hover:scale-105 shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 text-sm xs:text-base`}
                 >
                   {isLoading ? (
                     <>
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin inline" />
-                      Exportando...
+                      <Loader2 className="w-4 h-4 xs:w-5 xs:h-5 mr-1 xs:mr-2 animate-spin inline" />
+                      <span className="hidden xs:inline">Exportando...</span>
+                      <span className="xs:hidden">...</span>
                     </>
                   ) : (
                     <>
-                      <Download className="w-5 h-5 mr-2 inline" />
-                      {option.title}
+                      <Download className="w-4 h-4 xs:w-5 xs:h-5 mr-1 xs:mr-2 inline" />
+                      <span className="hidden xs:inline">{option.title}</span>
+                      <span className="xs:hidden">{option.title.split(' ')[1]}</span>
                     </>
                   )}
                 </button>
@@ -477,9 +479,9 @@ export function ExportData() {
       </div>
 
       {/* Footer Info */}
-      <div className="flex items-center justify-center gap-2 text-xs text-white/60 mt-8">
+      <div className="flex items-center justify-center gap-2 text-xs text-white/60 mt-6 xs:mt-8">
         <Clock className="w-3 h-3" />
-        <span>Dados atualizados: {new Date().toLocaleString('pt-BR')}</span>
+        <span className="text-center">Dados atualizados: {new Date().toLocaleString('pt-BR')}</span>
         <Zap className="w-3 h-3 text-yellow-400 animate-pulse" />
       </div>
     </div>
