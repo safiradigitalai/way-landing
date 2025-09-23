@@ -159,7 +159,7 @@ const SecuritySection = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                           </svg>
                         </div>
-                        <span className="text-gray-700">Contato direto com authorities</span>
+                        <span className="text-gray-700">Contato direto com autoridades</span>
                       </li>
                       <li className="flex items-start gap-4">
                         <div className="w-6 h-6 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
