@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import Header from '@/components/sections/Header';
 import Footer from '@/components/sections/Footer';
 
@@ -34,9 +35,11 @@ const TermosDeUsoPage = () => {
           {/* Informações da Empresa */}
           <div className="bg-gradient-to-br from-purple-600 to-purple-800 rounded-3xl p-8 text-white mb-12">
             <div className="text-center">
-              <img
+              <Image
                 src="/logo-branco.png"
                 alt="Way"
+                width={64}
+                height={64}
                 className="h-16 mx-auto mb-6 filter brightness-0 invert"
               />
               <h2 className="text-2xl font-bold mb-6">WAY DRIVE BR TECNOLOGIA LTDA</h2>

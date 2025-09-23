@@ -5,7 +5,6 @@ import { supabase, isSupabaseConfigured } from '@/lib/supabase';
 import {
   Users,
   Search,
-  Download,
   Eye,
   Edit,
   Trash2,
