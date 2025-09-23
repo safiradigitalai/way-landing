@@ -111,18 +111,10 @@ const RoletaPremiadaSection = () => {
     }
   ], []);
 
-  // Algoritmo de sorteio justo
+  // Algoritmo de sorteio configurado para sempre retornar 10% OFF
   const sortearPremio = useCallback((email: string): Premio => {
-    const seed = Date.now() + email.split('').reduce((a, b) => a + b.charCodeAt(0), 0);
-    const random = Math.sin(seed) * 10000;
-    const numero = Math.abs(random % 100);
-
-    let acumulado = 0;
-    for (const premio of premios) {
-      acumulado += premio.peso;
-      if (numero < acumulado) return premio;
-    }
-    return premios[premios.length - 1];
+    // Sempre retorna o prêmio de 10% OFF (id: 4)
+    return premios.find(premio => premio.id === 4) || premios[3];
   }, [premios]);
 
 
@@ -182,8 +174,12 @@ const RoletaPremiadaSection = () => {
       }
 
       if (duplicateCheck?.duplicate) {
+        const mensagemErro = duplicateCheck.type === 'email'
+          ? 'Este email já foi utilizado na promoção. Cada email pode participar apenas uma vez.'
+          : 'Este WhatsApp já foi utilizado na promoção. Cada número pode participar apenas uma vez.';
+
         setErrosForm({
-          [duplicateCheck.type]: duplicateCheck.message
+          [duplicateCheck.type]: mensagemErro
         });
         return;
       }
@@ -194,7 +190,7 @@ const RoletaPremiadaSection = () => {
     } catch (error) {
       console.error('Erro ao verificar duplicatas:', error);
       setErrosForm({
-        email: 'Erro de conexão. Verifique sua internet e tente novamente.'
+        email: 'Erro de conexão com o servidor. Verifique sua internet e tente novamente.'
       });
     }
   };
@@ -589,7 +585,10 @@ const RoletaPremiadaSection = () => {
                         PARABÉNS!
                       </h2>
                       <p className="text-lg sm:text-xl lg:text-2xl text-yellow-400 font-bold mb-4 sm:mb-6">
-                        Você ganhou {premioGanho.nome}
+                        Você ganhou {premioGanho.nome} de desconto!
+                      </p>
+                      <p className="text-base sm:text-lg text-white/90 mb-4 sm:mb-6">
+                        Baixe agora seu app e valide seu cupom único por conta
                       </p>
                     </div>
 
@@ -601,7 +600,7 @@ const RoletaPremiadaSection = () => {
                           {premioGanho.cupom}-{Math.random().toString(36).substr(2, 4).toUpperCase()}
                         </div>
                         <p className="text-xs sm:text-sm mt-3 opacity-80">
-                          Use este cupom no seu primeiro pedido
+                          Use este cupom único na sua primeira viagem
                         </p>
                       </div>
                     </div>
@@ -618,7 +617,7 @@ const RoletaPremiadaSection = () => {
                         <li>1. Baixe o app Way na Play Store</li>
                         <li>2. Faça seu cadastro</li>
                         <li>3. Vá em &quot;Cupons&quot; e digite o código acima</li>
-                        <li>4. Aproveite seu desconto na primeira viagem!</li>
+                        <li>4. Aproveite seus 10% de desconto na primeira viagem!</li>
                       </ol>
                     </div>
                   </>
