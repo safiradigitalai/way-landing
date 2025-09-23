@@ -244,9 +244,11 @@ const HeroSection = () => {
             </a>
 
             {/* App Cliente iOS */}
-            <button
-              onClick={scrollToDownload}
-              className="group relative px-8 py-5 bg-gray-800 hover:bg-gray-700 text-white font-bold text-lg rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-gray-800/25 flex flex-col items-center gap-2 sm:col-span-2 lg:col-span-1"
+            <a
+              href="https://apps.apple.com/br/app/way-drive-passageiro/id6752722977"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-8 py-5 bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-300 hover:to-orange-400 text-black font-bold text-lg rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-yellow-500/25 flex flex-col items-center gap-2 sm:col-span-2 lg:col-span-1"
             >
               <div className="flex items-center gap-2">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -254,9 +256,9 @@ const HeroSection = () => {
                 </svg>
                 <span className="relative z-10">App Cliente</span>
               </div>
-              <span className="text-sm opacity-80">iOS • Em breve</span>
-              <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
-            </button>
+              <span className="text-sm opacity-80">iOS • App Store</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-yellow-300 to-orange-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
+            </a>
           </div>
 
           {/* Banner da Roleta Premiada */}

@@ -23,11 +23,11 @@ const TermosDeUsoPage = () => {
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-black mb-6 leading-tight">
               Termos e Condições
-              <span className="block text-purple-600">de Uso</span>
+              <span className="block text-purple-600">e Privacidade</span>
             </h1>
 
             <p className="text-xl text-black/70 leading-relaxed max-w-2xl mx-auto">
-              Regulamentação completa do uso da plataforma WAYDRIVE para garantir uma experiência segura e transparente para todos os usuários.
+              Regulamentação completa do uso da plataforma WAYDRIVE e nossa política de privacidade para garantir uma experiência segura e transparente para todos os usuários.
             </p>
           </div>
 
@@ -339,8 +339,8 @@ const TermosDeUsoPage = () => {
               </section>
             ))}
 
-            {/* Declaração de Aceite */}
-            <section className="mb-12">
+            {/* Declaração de Aceite dos Termos */}
+            <section className="mb-16">
               <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-3xl p-8 text-white text-center">
                 <div className="flex justify-center mb-4">
                   <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
@@ -360,6 +360,306 @@ const TermosDeUsoPage = () => {
                 </p>
               </div>
             </section>
+
+            {/* Divisor */}
+            <div className="flex items-center justify-center mb-16">
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent"></div>
+              <div className="mx-8">
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
+                  <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                </div>
+              </div>
+              <div className="flex-1 h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent"></div>
+            </div>
+
+            {/* Política de Privacidade */}
+            <div id="privacidade" className="mb-16">
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center space-x-2 px-4 py-2 bg-pink-100 text-pink-800 rounded-full text-sm font-medium mb-6">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                  <span>Proteção de Dados</span>
+                </div>
+
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-black mb-6 leading-tight">
+                  Política de
+                  <span className="block text-pink-600">Privacidade</span>
+                </h1>
+
+                <p className="text-xl text-black/70 leading-relaxed max-w-2xl mx-auto mb-4">
+                  Nossa política de privacidade em conformidade com a LGPD para proteger seus dados pessoais.
+                </p>
+
+                <div className="inline-flex items-center gap-2 text-sm text-black/60 bg-gray-100 px-4 py-2 rounded-full">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Última atualização: 21/09/2025</span>
+                </div>
+              </div>
+
+              {/* Introdução da Privacidade */}
+              <section className="mb-12">
+                <div className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-2xl p-8">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-pink-600 text-white rounded-2xl flex items-center justify-center">
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    </div>
+                    <h2 className="text-3xl font-bold text-black">Proteção dos seus dados</h2>
+                  </div>
+                  <p className="text-lg text-black/80 leading-relaxed">
+                    A WAYDRIVE valoriza a privacidade e a segurança das informações de seus usuários (passageiros e motoristas). Esta Política de Privacidade explica de forma clara como coletamos, utilizamos, armazenamos, compartilhamos e protegemos seus dados pessoais, em conformidade com a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018 – LGPD) e demais legislações aplicáveis no Brasil.
+                  </p>
+                </div>
+              </section>
+
+              {/* 1. Dados que coletamos */}
+              <section className="mb-12">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 bg-pink-600 text-white rounded-2xl flex items-center justify-center font-bold text-lg">1</div>
+                  <h2 className="text-3xl font-bold text-black">Dados que coletamos</h2>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-6">
+                  <p className="text-lg text-black/80 leading-relaxed mb-6">
+                    Podemos coletar os seguintes tipos de dados pessoais, conforme o uso do aplicativo:
+                  </p>
+
+                  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <div className="bg-white rounded-xl p-6 border border-gray-200">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                        </div>
+                        <h3 className="font-bold text-blue-600">Dados de cadastro</h3>
+                      </div>
+                      <ul className="space-y-2 text-sm text-black/70">
+                        <li>• Nome completo, CPF, RG, CNH</li>
+                        <li>• Data de nascimento, e-mail, telefone</li>
+                        <li>• Endereço, foto de perfil</li>
+                        <li>• Dados bancários (para motoristas)</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-white rounded-xl p-6 border border-gray-200">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                          </svg>
+                        </div>
+                        <h3 className="font-bold text-green-600">Dados de uso</h3>
+                      </div>
+                      <ul className="space-y-2 text-sm text-black/70">
+                        <li>• Localização em tempo real (GPS)</li>
+                        <li>• Histórico de corridas e rotas</li>
+                        <li>• Horários e valores das corridas</li>
+                        <li>• Informações sobre o dispositivo</li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-white rounded-xl p-6 border border-gray-200">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-10 h-10 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center">
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                          </svg>
+                        </div>
+                        <h3 className="font-bold text-yellow-600">Dados de pagamento</h3>
+                      </div>
+                      <ul className="space-y-2 text-sm text-black/70">
+                        <li>• Informações de cartão de crédito/débito</li>
+                        <li>• PIX e outros meios de pagamento</li>
+                        <li>• Processados por parceiros seguros</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              {/* 2. Finalidade do uso dos dados */}
+              <section className="mb-12">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 bg-pink-600 text-white rounded-2xl flex items-center justify-center font-bold text-lg">2</div>
+                  <h2 className="text-3xl font-bold text-black">Finalidade do uso dos dados</h2>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-6">
+                  <p className="text-lg text-black/80 leading-relaxed mb-6">
+                    A WAYDRIVE utiliza os dados pessoais para:
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {[
+                      'Realizar o cadastro e autenticação de motoristas e passageiros',
+                      'Intermediar corridas entre passageiros e motoristas',
+                      'Processar pagamentos e repasses financeiros',
+                      'Garantir segurança e prevenção de fraudes',
+                      'Melhorar a experiência do usuário no aplicativo',
+                      'Cumprir obrigações legais e regulatórias',
+                      'Enviar comunicações importantes sobre o uso do app, promoções e atualizações'
+                    ].map((item, index) => (
+                      <div key={index} className="flex gap-3 items-start">
+                        <div className="w-2 h-2 bg-pink-600 rounded-full mt-3 flex-shrink-0"></div>
+                        <span className="text-black/80">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* 3. Compartilhamento de dados */}
+              <section className="mb-12">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 bg-pink-600 text-white rounded-2xl flex items-center justify-center font-bold text-lg">3</div>
+                  <h2 className="text-3xl font-bold text-black">Compartilhamento de dados</h2>
+                </div>
+                <div className="bg-gray-50 rounded-2xl p-6">
+                  <p className="text-lg text-black/80 leading-relaxed mb-6">
+                    Seus dados podem ser compartilhados com:
+                  </p>
+                  <div className="space-y-4">
+                    {[
+                      { entity: 'Motoristas', desc: 'informações necessárias para a corrida (nome, localização, telefone)' },
+                      { entity: 'Passageiros', desc: 'informações do motorista e veículo (nome, foto, placa, modelo do carro)' },
+                      { entity: 'Parceiros de pagamento', desc: 'para processamento financeiro' },
+                      { entity: 'Autoridades públicas', desc: 'quando exigido por lei ou decisão judicial' },
+                      { entity: 'Fornecedores de tecnologia e segurança', desc: 'exclusivamente para suporte às operações do app' }
+                    ].map((item, index) => (
+                      <div key={index} className="flex gap-4">
+                        <div className="w-2 h-2 bg-pink-600 rounded-full mt-3 flex-shrink-0"></div>
+                        <div>
+                          <strong className="text-pink-600">{item.entity}:</strong>
+                          <span className="text-black/80 ml-1">{item.desc}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </section>
+
+              {/* 4. Direitos do titular dos dados */}
+              <section className="mb-12">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 bg-pink-600 text-white rounded-2xl flex items-center justify-center font-bold text-lg">4</div>
+                  <h2 className="text-3xl font-bold text-black">Direitos do titular dos dados</h2>
+                </div>
+                <div className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-6">
+                  <p className="text-lg text-black/80 leading-relaxed mb-6">
+                    Em conformidade com a LGPD, você tem os seguintes direitos:
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    {[
+                      'Confirmar se tratamos seus dados pessoais',
+                      'Acessar seus dados',
+                      'Corrigir dados incompletos, inexatos ou desatualizados',
+                      'Solicitar anonimização, bloqueio ou eliminação de dados desnecessários',
+                      'Solicitar a portabilidade dos dados',
+                      'Revogar consentimento, quando aplicável',
+                      'Solicitar a exclusão de seus dados, respeitadas as obrigações legais de retenção'
+                    ].map((item, index) => (
+                      <div key={index} className="flex gap-3 items-start">
+                        <div className="w-2 h-2 bg-blue-600 rounded-full mt-3 flex-shrink-0"></div>
+                        <span className="text-black/80">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="bg-white rounded-xl p-4 border border-blue-200">
+                    <p className="text-center text-black/80">
+                      As solicitações podem ser feitas pelo e-mail:
+                      <a href="mailto:contato@waydrivebr.com.br" className="text-blue-600 font-semibold ml-1 hover:underline">
+                        contato@waydrivebr.com.br
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </section>
+
+              {/* Seções 5-9 */}
+              {[
+                {
+                  number: 5,
+                  title: 'Armazenamento e segurança',
+                  content: [
+                    'Os dados são armazenados em servidores seguros, localizados no Brasil e/ou no exterior, com empresas que cumprem padrões internacionais de proteção de dados.',
+                    'Adotamos medidas técnicas e administrativas para proteger contra acessos não autorizados, perda, destruição ou alteração indevida.'
+                  ]
+                },
+                {
+                  number: 6,
+                  title: 'Retenção dos dados',
+                  content: [
+                    'Os dados serão mantidos enquanto o usuário possuir cadastro ativo na WAYDRIVE ou pelo período necessário para cumprir obrigações legais, regulatórias ou contratuais.'
+                  ]
+                },
+                {
+                  number: 7,
+                  title: 'Cookies e tecnologias semelhantes',
+                  content: [
+                    'O aplicativo pode utilizar cookies, pixels e tecnologias semelhantes para melhorar a experiência do usuário, medir desempenho e oferecer conteúdos personalizados.'
+                  ]
+                },
+                {
+                  number: 8,
+                  title: 'Alterações desta política',
+                  content: [
+                    'A WAYDRIVE poderá atualizar esta Política de Privacidade a qualquer momento, mediante aviso no aplicativo ou em nosso site. Recomendamos consulta periódica.'
+                  ]
+                },
+                {
+                  number: 9,
+                  title: 'Encarregado pelo tratamento de dados (DPO)',
+                  content: [
+                    'Para dúvidas ou solicitações relacionadas ao tratamento de dados pessoais, entre em contato com o Encarregado de Proteção de Dados (DPO):',
+                    'Nome: Encarregado de Proteção de Dados – WAYDRIVE',
+                    'E-mail: contato@waydrivebr.com.br'
+                  ]
+                }
+              ].map((section) => (
+                <section key={section.number} className="mb-12">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 bg-pink-600 text-white rounded-2xl flex items-center justify-center font-bold text-lg">{section.number}</div>
+                    <h2 className="text-3xl font-bold text-black">{section.title}</h2>
+                  </div>
+                  <div className="bg-gray-50 rounded-2xl p-6">
+                    <div className="space-y-4">
+                      {section.content.map((item, index) => (
+                        <div key={index} className="flex gap-4">
+                          <div className="w-2 h-2 bg-pink-600 rounded-full mt-3 flex-shrink-0"></div>
+                          <span className="text-black/80">{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </section>
+              ))}
+
+              {/* Declaração de Aceite da Privacidade */}
+              <section className="mb-12">
+                <div className="bg-gradient-to-r from-pink-500 to-purple-600 rounded-3xl p-8 text-white text-center">
+                  <div className="flex justify-center mb-4">
+                    <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
+                      <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-center gap-3 mb-4">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <h2 className="text-2xl font-bold">Proteção dos seus Dados</h2>
+                  </div>
+                  <p className="text-lg leading-relaxed max-w-2xl mx-auto">
+                    Ao utilizar a plataforma WAYDRIVE, você concorda com esta Política de Privacidade e autoriza o tratamento de seus dados pessoais conforme descrito.
+                  </p>
+                </div>
+              </section>
+            </div>
 
           </div>
 

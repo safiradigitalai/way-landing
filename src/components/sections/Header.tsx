@@ -79,7 +79,7 @@ const Header = () => {
                   { label: 'Diferenciais', id: 'vantagens' },
                   { label: 'Segurança', id: 'seguranca' },
                   { label: 'Preços', id: 'tarifas' },
-                  { label: 'Termos', id: 'termos-de-uso', isLink: true }
+                  { label: 'Termos e Privacidade', id: 'termos-de-uso', isLink: true }
                 ].map((item) => (
                   item.isLink ? (
                     <a
@@ -193,7 +193,7 @@ const Header = () => {
                   { label: 'Diferenciais', id: 'vantagens' },
                   { label: 'Segurança', id: 'seguranca' },
                   { label: 'Preços', id: 'tarifas' },
-                  { label: 'Termos', id: 'termos-de-uso', isLink: true }
+                  { label: 'Termos e Privacidade', id: 'termos-de-uso', isLink: true }
                 ].map((item) => (
                   item.isLink ? (
                     <a
