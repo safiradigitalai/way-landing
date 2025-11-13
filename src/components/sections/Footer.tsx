@@ -77,7 +77,7 @@ const Footer = () => {
           />
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-black mb-6 leading-tight">
             O futuro do transporte <br/>
-            <span className="text-purple-600">já chegou em Natal</span>
+            <span className="text-purple-600">agora em 12 cidades</span>
           </h2>
           <p className="text-xl text-black/80 leading-relaxed font-medium max-w-3xl mx-auto">
             Revolucionando o transporte urbano com <span className="text-purple-600 font-bold">tecnologia</span>, <span className="text-purple-600 font-bold">segurança</span> e <span className="text-purple-600 font-bold">tarifas justas</span>. 

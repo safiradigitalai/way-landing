@@ -5,17 +5,24 @@ import React, { useEffect, useState } from 'react';
 const HeroSection = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
-  const scrollToDownload = () => {
-    const element = document.getElementById('download');
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
+  const cidades = [
+    'Açu',
+    'Caicó',
+    'C. Novos',
+    'S. Cruz',
+    'Macaíba',
+    'Extremoz',
+    'SGA',
+    'C. Mirim',
+    'Parnamirim',
+    'Mossoró',
+    'Natal',
+    'João Pessoa'
+  ];
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ 
+      setMousePosition({
         x: (e.clientX / window.innerWidth) * 100,
         y: (e.clientY / window.innerHeight) * 100
       });
@@ -60,7 +67,7 @@ const HeroSection = () => {
         <div className="flex justify-center mb-8">
           <div className="inline-flex items-center space-x-2 px-6 py-2 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full">
             <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-            <span className="text-white/90 text-sm font-medium">Disponível em Natal • RN</span>
+            <span className="text-white/90 text-sm font-medium">Disponível em 12 cidades • RN & PB</span>
           </div>
         </div>
 
@@ -77,13 +84,24 @@ const HeroSection = () => {
                   DO TRANSPORTE
                 </span>
               </div>
-              <div className="text-lg md:text-xl lg:text-2xl text-gray-300 font-light tracking-wide">
-                chegou em <span className="text-yellow-400 font-bold">Natal</span>
+              <div className="text-lg md:text-xl lg:text-2xl text-gray-300 font-light tracking-wide mb-6">
+                agora em:
               </div>
-              
-              {/* Animated underline */}
-              <div className="absolute -bottom-2 left-0 lg:left-0 right-0 lg:right-auto">
-                <div className="w-32 h-1 bg-purple-500 rounded-full animate-pulse mx-auto lg:mx-0" />
+
+              {/* Grid de Cidades */}
+              <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-6 max-w-2xl mx-auto lg:mx-0">
+                {cidades.map((cidade, index) => (
+                  <div
+                    key={index}
+                    className="group relative px-4 py-2 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 backdrop-blur-sm border border-yellow-400/30 rounded-full hover:border-yellow-400/60 transition-all duration-300 hover:scale-105"
+                  >
+                    <span className="text-yellow-400 font-bold text-sm md:text-base">
+                      {cidade}
+                    </span>
+                    {/* Efeito de brilho no hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+                  </div>
+                ))}
               </div>
             </h1>
 
@@ -137,7 +155,7 @@ const HeroSection = () => {
                     <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
                     <span className="text-white font-semibold">Way Online</span>
                   </div>
-                  <div className="text-purple-400 text-sm">Natal • RN</div>
+                  <div className="text-purple-400 text-sm">RN & PB</div>
                 </div>
                 
                 {/* Mock App Interface */}
